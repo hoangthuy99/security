@@ -35,7 +35,7 @@ public class UserServiceImpl implements IUserService {
             throw new RuntimeException("userName is exists");
         }
         Set<Role> roles = new HashSet<>();
-        roles.add(roleService.findByRoleName("ROLE_USER"));
+        roles.add(roleService.findByRoleName("USER"));
         User user = User.builder().
                 fullName(userRegister.getFullName())
                 .userName(userRegister.getUsername())
