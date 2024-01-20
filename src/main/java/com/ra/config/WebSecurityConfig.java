@@ -6,7 +6,6 @@ import com.ra.security.user_principal.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -35,9 +34,11 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .authenticationProvider(authenticationProvider())
-                .authorizeHttpRequests((auth) ->
-                        auth.requestMatchers("/auth/**").permitAll()
-                                .requestMatchers("/admin/**").hasAuthority("ADMIN")
+                .authorizeHttpRequests(
+                        (auth) -> auth
+                                .requestMatchers("/v1/auth/**").permitAll()
+                                .requestMatchers("/v1/admin/**").permitAll()
+                                .anyRequest().authenticated()
                 ).exceptionHandling((auth) -> auth.authenticationEntryPoint(jwtEntryPoint)).
                 sessionManagement((auth) -> auth.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class).build();

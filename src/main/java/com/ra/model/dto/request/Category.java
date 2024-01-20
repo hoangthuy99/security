@@ -12,9 +12,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Builder
-public class UserLogin {
+public class Category {
+    @NotNull(message = "Không được rỗng")
     @NotEmpty(message = "Không được để trống")
-    private String username;
-    @NotEmpty(message = "Không được để trống")
-    private String password;
+    @NotBlank(message = "Không được bỏ rỗng")
+    private String categoryName;
+    private String description;
+    private Boolean status;
 }

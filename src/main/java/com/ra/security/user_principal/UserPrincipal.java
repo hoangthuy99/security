@@ -23,12 +23,12 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public String getPassword() {
-        return this.user.getPassWord();
+        return this.user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return this.user.getUserName();
+        return this.user.getUsername();
     }
 
     @Override
@@ -48,6 +48,6 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return this.user.getStatus();
+        return true;
     }
 }

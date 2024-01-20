@@ -41,7 +41,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                 }
             }
         } catch (Exception exception){
-            logger.error("Un authencation {}",exception.getMessage());
+            logger.error("Un authentication {}",exception.getMessage());
         }
         filterChain.doFilter(request,response);
     }

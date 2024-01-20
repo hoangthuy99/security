@@ -17,7 +17,7 @@ public class JwtProvider {
     private Logger logger = LoggerFactory.getLogger(JwtEntryPoint.class);
     public String generateToken(UserPrincipal userPrincipal){
         String token = Jwts.builder().setSubject(userPrincipal.getUsername()).setIssuedAt(new Date()).setExpiration(
-                new Date(new Date().getTime()+EXPIRED)).signWith(SignatureAlgorithm.ES256,SECRET_KEY).compact();
+                new Date(new Date().getTime()+EXPIRED)).signWith(SignatureAlgorithm.HS256,SECRET_KEY).compact();
 
         return token;
     }
